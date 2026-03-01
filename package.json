@@ -2,7 +2,7 @@
   "name": "cucumber-scenario-runner",
   "displayName": "Cucumber Scenario Runner",
   "description": "Run Cucumber scenarios directly from the editor with a single click",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "FrancisMwangi",
   "engines": {
     "vscode": "^1.74.0"
@@ -101,6 +101,14 @@
     "lint": "eslint src --ext ts",
     "package": "vsce package"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mwaaas/cucumber_runner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mwaaas/cucumber_runner/issues"
+  },
+  "homepage": "https://github.com/mwaaas/cucumber_runner#readme",
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@types/vscode": "^1.74.0",
