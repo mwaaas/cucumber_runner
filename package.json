@@ -1,0 +1,113 @@
+{
+  "name": "cucumber-scenario-runner",
+  "displayName": "Cucumber Scenario Runner",
+  "description": "Run Cucumber scenarios directly from the editor with a single click",
+  "version": "1.0.6",
+  "publisher": "FrancisMwangi",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Testing",
+    "Other"
+  ],
+  "extensionDependencies": [
+    "CucumberOpen.cucumber-official"
+  ],
+  "keywords": [
+    "cucumber",
+    "gherkin",
+    "bdd",
+    "test",
+    "scenario"
+  ],
+  "activationEvents": [
+    "onLanguage:feature",
+    "onLanguage:cucumber",
+    "onLanguage:gherkin",
+    "workspaceContains:**/*.feature"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cucumber-runner.runScenario",
+        "title": "Run Cucumber Scenario",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cucumber-runner.runFeature",
+        "title": "Run Cucumber Feature",
+        "icon": "$(play-circle)"
+      },
+      {
+        "command": "cucumber-runner.debugScenario",
+        "title": "Debug Cucumber Scenario",
+        "icon": "$(debug-alt)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "cucumber-runner.runFeature",
+          "when": "resourceExtname == .feature",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "cucumber-runner.runScenario",
+          "when": "resourceExtname == .feature",
+          "group": "cucumber@1"
+        },
+        {
+          "command": "cucumber-runner.debugScenario",
+          "when": "resourceExtname == .feature",
+          "group": "cucumber@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Cucumber Scenario Runner",
+      "properties": {
+        "cucumberRunner.runInTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run scenarios in integrated terminal"
+        },
+        "cucumberRunner.commandTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Custom command template. Use {featurePath} for the feature file path and {line} for line number. Example: 'npm run test -- {featurePath}:{line}'"
+        },
+        "cucumberRunner.cwd": {
+          "type": "string",
+          "default": "",
+          "description": "Working directory relative to workspace root where Cucumber commands should be executed. Use this if your Cucumber project is in a subdirectory (e.g., 'cucumber' or 'tests/e2e')"
+        },
+        "cucumberRunner.profile": {
+          "type": "string",
+          "default": "",
+          "description": "Cucumber profile to use. Leave empty to ignore cucumber.js config file (recommended when running single scenarios). Set to a profile name to use that specific profile."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.0.0"
+  }
+}
